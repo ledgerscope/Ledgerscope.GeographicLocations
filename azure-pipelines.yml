@@ -1,15 +1,20 @@
 trigger:
-  batch: true
   branches:
     include:
     - 'master'
     - 'main'
 
-name: 0.1.0-CI-$(Date:yyyyMMdd)-$(Rev:rrr)
-
 pool:
   vmImage: windows-latest
 
+variables:
+- name: buildConfiguration
+  value: 'Release'
+- name: Version
+  value: 1.0.$(Build.BuildId)
+- name: buildArgs
+  value: '--configuration $(buildConfiguration) -p:Version=$(Version) -p:PackageVersion=$(Version)'
+    
 steps:
   - task: DotNetCoreCLI@2
     displayName: 'Restore'
@@ -18,31 +23,34 @@ steps:
       projects: '**/*.csproj'
       feedsToUse: 'select'
       vstsFeed: 'aeaa4311-673f-4791-a14d-d19ad82f0603'
+      arguments: '$(buildArgs)'
   
   - task: DotNetCoreCLI@2
     displayName: 'Build'
     inputs:
       command: 'build'
       projects: '**/*.csproj'
+      arguments: '$(buildArgs)'
   
   - task: DotNetCoreCLI@2
     displayName: 'Test'
     inputs:
       command: 'test'
       projects: '**/*.csproj'
+      arguments: '$(buildArgs)'
   
   - task: DotNetCoreCLI@2
     displayName: 'Pack'
     inputs:
       command: 'pack'
       packagesToPack: '**/Ledgerscope.GeographicLocations.csproj'
-      includesource: true
-      versioningScheme: 'byBuildNumber'
+      versioningScheme: 'byEnvVar'
+      versionEnvVar: 'Version'
 
-  - task: PublishBuildArtifacts@1
+  - task: PublishPipelineArtifact@1
     displayName: Publish 'drop' artifacts
     inputs:
-      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      targetPath: '$(Build.ArtifactStagingDirectory)'
       artifactName: drop
   
   - task: DotNetCoreCLI@2
