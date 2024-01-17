@@ -42,8 +42,9 @@ namespace Ledgerscope.GeographicLocations.Generator
 					string officialName = getGeoInfo(geoId, NativeMethods.SYSGEOTYPE.GEO_OFFICIALNAME, langId).SurroundWithQuotes();
 					string timeZones = getGeoInfo(geoId, NativeMethods.SYSGEOTYPE.GEO_TIMEZONES, langId).SurroundWithQuotes();
 					string officialLanguages = getGeoInfo(geoId, NativeMethods.SYSGEOTYPE.GEO_OFFICIALLANGUAGES, langId).SurroundWithQuotes();
+					string currency = getGeoInfo(geoId, NativeMethods.SYSGEOTYPE.GEO_CURRENCYCODE, langId).SurroundWithQuotes();
 
-					geoLocs.AppendLine($"yield return new GeoLocation({nation}, {latitude}, {longitude}, {iso2}, {iso3}, {rfc1766}, {lcid}, {friendlyName}, {officialName}, {timeZones}, {officialLanguages});");
+					geoLocs.AppendLine($"yield return new GeoLocation({nation}, {latitude}, {longitude}, {iso2}, {iso3}, {rfc1766}, {lcid}, {friendlyName}, {officialName}, {timeZones}, {officialLanguages}, {currency});");
 				}
 
 				return geoLocs.ToString();
