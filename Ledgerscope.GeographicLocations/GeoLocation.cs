@@ -6,6 +6,7 @@ namespace Ledgerscope.GeographicLocations
 	/// Ledgerscope snapshot in time of Windows geographic location data.
 	/// </summary>
 	/// <remarks>Done so that our Linux build servers have the Windows location data too.</remarks>
+	[Obsolete("Prefer WindowsCountry instead - that knows about currency symbols.")]
 	public partial class GeoLocation
 	{
 		public string Nation { get; }

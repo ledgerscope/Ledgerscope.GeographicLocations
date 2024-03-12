@@ -10,5 +10,13 @@ namespace Ledgerscope.GeographicLocations.Generator.Extensions
 		{
 			return "\"" + str + "\"";
 		}
+
+		public static StringBuilder AppendWithQuotes(this StringBuilder sb, string txt)
+		{
+			if (txt.IndexOf('"') >= 0)
+				throw new ArgumentException("The text cannot contain double quotes.", nameof(txt));
+
+			return sb.Append('"').Append(txt).Append('"');
+		}
 	}
 }
