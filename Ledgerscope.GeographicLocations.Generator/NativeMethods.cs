@@ -9,12 +9,20 @@ namespace Ledgerscope.GeographicLocations.Generator
 		[DllImport("Kernel32.dll", SetLastError = true)]
 		public static extern int GetGeoInfo(int location, SYSGEOTYPE geoType, StringBuilder lpGeoData, int cchData, int langId);
 
+		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+		public static extern int GetGeoInfoEx(string twoLetterCode, SYSGEOTYPE geoType, string geoData, int geoDataCount);
+
 		[DllImport("Kernel32.dll", SetLastError = true)]
 		public static extern int EnumSystemGeoID(int geoClass, int parentGeoId, EnumGeoInfoProc lpGeoEnumProc);
+
+		[DllImport("Kernel32.dll", SetLastError = true)]
+		public static extern int EnumSystemGeoNames(int geoClass, EnumGeoNameProc lpGeoEnumProc);
 
 		public const int GEOCLASS_NATION = 0x10;
 
 		public delegate bool EnumGeoInfoProc(int GeoId);
+
+		public delegate bool EnumGeoNameProc([MarshalAs(UnmanagedType.LPWStr)] string val);
 
 		public enum SYSGEOTYPE
 		{

@@ -12,7 +12,8 @@ namespace Ledgerscope.GeographicLocations
 			// code generators aren't running, or are (silently) throwing errors when they run.
 
 			_ = GeoLocation.GetAll();
-			_ = WindowsCountry.GetAll();
+			//_ = WindowsCountry.GetAll();
+			_ = SysCountry.GetAll();
 		}
 	}
 }
