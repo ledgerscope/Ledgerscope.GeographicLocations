@@ -22,6 +22,9 @@ namespace Ledgerscope.GeographicLocations
 			_ = GeoLocation.GetAll();
 			//_ = WindowsCountry.GetAll();
 			_ = SysCountry.GetAll();
+
+			// As long as the above lines compile (no red wavy lines), then the code generators are working
+			// and it should go through ok on DevOps Pipeline, even if the Error List window is showing errors.
 		}
 	}
 }
