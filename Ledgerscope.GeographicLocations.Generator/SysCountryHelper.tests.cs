@@ -79,6 +79,31 @@ namespace Ledgerscope.GeographicLocations.Generator
 			}
 
 			[TestMethod]
+			public void Test_Kronas()
+			{
+				var countries = GetAllCountries();
+				Assert.IsNotNull(countries);
+				Assert.IsTrue(countries.Count > 0);
+
+				var denmark = countries.Where(c => c.TwoLetterCode == "DK").Single();
+				var sweden = countries.Where(c => c.TwoLetterCode == "SE").Single();
+				var norway = countries.Where(c => c.TwoLetterCode == "NO").Single();
+
+				Assert.AreEqual("Denmark", denmark.Name);
+				Assert.AreEqual("DKK", denmark.CurrencyCode);
+				// Yeah, Denmark gets a dot but the others don't. <shrug>
+				Assert.AreEqual("kr.", denmark.CurrencySymbol);
+
+				Assert.AreEqual("Sweden", sweden.Name);
+				Assert.AreEqual("SEK", sweden.CurrencyCode);
+				Assert.AreEqual("kr", sweden.CurrencySymbol);
+
+				Assert.AreEqual("Norway", norway.Name);
+				Assert.AreEqual("NOK", norway.CurrencyCode);
+				Assert.AreEqual("kr", norway.CurrencySymbol);
+			}
+
+			[TestMethod]
 			public void Test_UnitedKingdom()
 			{
 				var countries = GetAllCountries();

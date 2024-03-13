@@ -10,6 +10,14 @@ namespace Ledgerscope.GeographicLocations
 		{
 			// If you are finding that this will not compile, it'll be because the 
 			// code generators aren't running, or are (silently) throwing errors when they run.
+			// Source Code Generation in Visual Studio is buggy.  Here's what you need to do:
+			// * Close the solution
+			// * Delete the bin and obj folders
+			// * Re-open the solution
+			// * Rebuild the Ledgerscope.GeographicLocations.Generator project
+			// * Close the solution
+			// * Re-open the solution
+			// * Rebuild the Ledgerscope.GeographicLocations project
 
 			_ = GeoLocation.GetAll();
 			//_ = WindowsCountry.GetAll();
