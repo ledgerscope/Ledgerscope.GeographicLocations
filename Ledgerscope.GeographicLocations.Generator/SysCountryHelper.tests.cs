@@ -33,6 +33,20 @@ namespace Ledgerscope.GeographicLocations.Generator
 				Assert.AreEqual("EUR", croatia.CurrencyCode);
 				Assert.AreEqual("€", croatia.CurrencySymbol);
 			}
+
+			[TestMethod]
+			public void Test_StringLengths()
+			{
+				Assert.AreEqual(7, "Curacao".Length);
+				Assert.AreEqual(7, Encoding.UTF8.GetBytes("Curacao").Length);
+				Assert.AreEqual(7, "Curaçao".Length);
+				Assert.AreEqual(8, Encoding.UTF8.GetBytes("Curaçao").Length);
+
+				Assert.AreEqual(21, "Sao Tome and Principe".Length);
+				Assert.AreEqual(21, Encoding.UTF8.GetBytes("Sao Tome and Principe").Length);
+				Assert.AreEqual(21, "São Tomé and Príncipe".Length);
+				Assert.AreEqual(24, Encoding.UTF8.GetBytes("São Tomé and Príncipe").Length);
+			}
 		}
 	}
 }

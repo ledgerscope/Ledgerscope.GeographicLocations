@@ -12,6 +12,12 @@ namespace Ledgerscope.GeographicLocations
 
 		public SysCountry(string name, string twoLetterCode, string threeLetterCode, string currencyCode, string currencySymbol)
 		{
+			if (twoLetterCode.Length != 2)
+				throw new ArgumentException("Two-letter code must be exactly 2 characters long", nameof(twoLetterCode));
+
+			if (threeLetterCode.Length != 3)
+				throw new ArgumentException("Three-letter code must be exactly 3 characters long", nameof(threeLetterCode));
+
 			Name = name;
 			TwoLetterCode = twoLetterCode;
 			ThreeLetterCode = threeLetterCode;
