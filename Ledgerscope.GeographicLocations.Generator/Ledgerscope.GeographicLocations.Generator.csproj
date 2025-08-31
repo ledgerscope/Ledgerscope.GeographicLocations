@@ -37,7 +37,7 @@
 				<!--Microsoft.NET.Test.Sdk added to get a test-tube project icon when in Debug mode, to signify it is a with-integrated-tests project.-->
 				<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
 				<PackageReference Include="MSTest.TestAdapter" Version="3.2.2" />
-				<PackageReference Include="MSTest.TestFramework" Version="3.2.2" />
+				<PackageReference Include="MSTest.TestFramework" Version="3.10.3" />
 			</ItemGroup>
 			<PropertyGroup>
 				<EnableNETAnalyzers>true</EnableNETAnalyzers>
