@@ -5,22 +5,17 @@ using System.Text;
 namespace Ledgerscope.GeographicLocations.Generator
 {
 	[Generator]
-	public class SysCountryGenerator : ISourceGenerator
+	public class SysCountryGenerator : IIncrementalGenerator
 	{
-		public void Execute(GeneratorExecutionContext context)
+		public void Initialize(IncrementalGeneratorInitializationContext context)
 		{
-
-		}
-
-		public void Initialize(GeneratorInitializationContext context)
-		{
-			context.RegisterForPostInitialization((i) =>
+			context.RegisterPostInitializationOutput((i) =>
 			{
 				registerWinCountries(i);
 			});
 		}
 
-		private void registerWinCountries(GeneratorPostInitializationContext i)
+		private void registerWinCountries(IncrementalGeneratorPostInitializationContext i)
 		{
 			string classDefn = @"using System;
 using System.Collections.Generic;
