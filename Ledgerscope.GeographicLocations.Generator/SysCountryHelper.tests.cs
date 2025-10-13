@@ -16,7 +16,7 @@ namespace Ledgerscope.GeographicLocations.Generator
 			{
 				var codes = getAllTwoLetterCodes();
 				Assert.IsNotNull(codes);
-				Assert.IsTrue(codes.Count > 0);
+				Assert.IsNotEmpty(codes);
 			}
 
 			[TestMethod]
@@ -24,10 +24,10 @@ namespace Ledgerscope.GeographicLocations.Generator
 			{
 				var countries = GetAllCountries();
 				Assert.IsNotNull(countries);
-				Assert.IsTrue(countries.Count > 0);
+				Assert.IsNotEmpty(countries);
 
 				var croatias = countries.Where(c => c.Name == "Croatia").ToList();
-				Assert.AreEqual(1, croatias.Count);
+				Assert.HasCount(1, croatias);
 
 				// As of March 2024, Windows has not caught up with the fact that
 				// since Jan 2023 Croatia uses the Euro.
@@ -46,10 +46,10 @@ namespace Ledgerscope.GeographicLocations.Generator
 
 				var countries = GetAllCountries();
 				Assert.IsNotNull(countries);
-				Assert.IsTrue(countries.Count > 0);
+				Assert.IsNotEmpty(countries);
 
 				var cypruses = countries.Where(c => c.Name == "Cyprus").ToList();
-				Assert.AreEqual(1, cypruses.Count);
+				Assert.HasCount(1, cypruses);
 
 				var cyprus = cypruses[0];
 				Assert.AreEqual("CY", cyprus.TwoLetterCode);
@@ -65,10 +65,10 @@ namespace Ledgerscope.GeographicLocations.Generator
 
 				var countries = GetAllCountries();
 				Assert.IsNotNull(countries);
-				Assert.IsTrue(countries.Count > 0);
+				Assert.IsNotEmpty(countries);
 
 				var tomes = countries.Where(c => c.TwoLetterCode == "ST").ToList();
-				Assert.AreEqual(1, tomes.Count);
+				Assert.HasCount(1, tomes);
 
 				var tome = tomes[0];
 				Assert.AreEqual("São Tomé and Príncipe", tome.Name);
@@ -83,7 +83,7 @@ namespace Ledgerscope.GeographicLocations.Generator
 			{
 				var countries = GetAllCountries();
 				Assert.IsNotNull(countries);
-				Assert.IsTrue(countries.Count > 0);
+				Assert.IsNotEmpty(countries);
 
 				var denmark = countries.Where(c => c.TwoLetterCode == "DK").Single();
 				var sweden = countries.Where(c => c.TwoLetterCode == "SE").Single();
@@ -108,10 +108,10 @@ namespace Ledgerscope.GeographicLocations.Generator
 			{
 				var countries = GetAllCountries();
 				Assert.IsNotNull(countries);
-				Assert.IsTrue(countries.Count > 0);
+				Assert.IsNotEmpty(countries);
 
 				var uks = countries.Where(c => c.TwoLetterCode == "GB").ToList();
-				Assert.AreEqual(1, uks.Count);
+				Assert.HasCount(1, uks);
 
 				var uk = uks[0];
 				Assert.AreEqual("United Kingdom", uk.Name);
@@ -124,15 +124,15 @@ namespace Ledgerscope.GeographicLocations.Generator
 			[TestMethod]
 			public void Test_StringByteLengths()
 			{
-				Assert.AreEqual(7, "Curacao".Length);
-				Assert.AreEqual(7, Encoding.UTF8.GetBytes("Curacao").Length);
-				Assert.AreEqual(7, "Curaçao".Length);
-				Assert.AreEqual(8, Encoding.UTF8.GetBytes("Curaçao").Length);
+				Assert.HasCount(7, "Curacao");
+				Assert.HasCount(7, Encoding.UTF8.GetBytes("Curacao"));
+				Assert.HasCount(7, "Curaçao");
+				Assert.HasCount(8, Encoding.UTF8.GetBytes("Curaçao"));
 
-				Assert.AreEqual(21, "Sao Tome and Principe".Length);
-				Assert.AreEqual(21, Encoding.UTF8.GetBytes("Sao Tome and Principe").Length);
-				Assert.AreEqual(21, "São Tomé and Príncipe".Length);
-				Assert.AreEqual(24, Encoding.UTF8.GetBytes("São Tomé and Príncipe").Length);
+				Assert.HasCount(21, "Sao Tome and Principe");
+				Assert.HasCount(21, Encoding.UTF8.GetBytes("Sao Tome and Principe"));
+				Assert.HasCount(21, "São Tomé and Príncipe");
+				Assert.HasCount(24, Encoding.UTF8.GetBytes("São Tomé and Príncipe"));
 			}
 		}
 	}
