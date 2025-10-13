@@ -4,16 +4,11 @@ using Microsoft.CodeAnalysis;
 namespace Ledgerscope.GeographicLocations.Generator
 {
 	[Generator]
-	public class GeographicGenerator : ISourceGenerator
+	public class GeographicGenerator : IIncrementalGenerator
 	{
-		public void Execute(GeneratorExecutionContext context)
+		public void Initialize(IncrementalGeneratorInitializationContext context)
 		{
-			
-		}
-
-		public void Initialize(GeneratorInitializationContext context)
-		{
-			context.RegisterForPostInitialization((i) =>
+			context.RegisterPostInitializationOutput((i) =>
 			{
 				var geographies = GeoLocationHelper.GetGeographicalLocations();
 
