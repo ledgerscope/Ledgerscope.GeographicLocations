@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	</PropertyGroup>
 
@@ -28,14 +28,14 @@
 	</PropertyGroup>
 	
 	<Choose>
-		<When Condition="'$(Configuration)' == 'Debug'">
+		<When Condition="'$(Configuration)|$(TargetFramework)' == 'Debug|net10.0'">
 			<ItemGroup>
 				<Compile Update="**\?*.tests*.cs">
 					<DependentUpon>$([System.Text.RegularExpressions.Regex]::Match(%(Filename), `^.*(?=\.tests.*)`)).cs</DependentUpon>
 					<SubType>Code</SubType>
 				</Compile>
 
-				<PackageReference Include="MSTest" Version="4.0.0" />
+				<PackageReference Include="MSTest" Version="4.2.3" />
         
 			</ItemGroup>
 			<PropertyGroup>
